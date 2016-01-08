@@ -1,10 +1,12 @@
 ﻿{
-  "version": "1.0.0-*",
+  "version": "1.0.1",
+  "title": "SourceMax DocumentDB Repository",
   "description": "SourceMax.DocumentDB Repository Library",
   "authors": [ "Chris Wiederspan" ],
-  "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
+  "tags": [ "Azure DocumentDB Repository" ],
+  "projectUrl": "https://github.com/sourcemax/documentdb-repository",
+  "licenseUrl": "https://github.com/sourcemax/documentdb-repository/blob/master/LICENSE",
+  "iconUrl": "https://sourcemax.blob.core.windows.net/images/logo.png",
 
   "dependencies": {
     "Microsoft.Azure.DocumentDB": "1.5.2",
