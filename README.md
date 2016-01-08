@@ -1,2 +1,4 @@
 # Azure DocumentDB Repository
 A repository implementation built on the Azure DocumentDB SDK for .NET that is reusable in ASP.NET 5 applications.
+
+[Available as a Nuget Package](https://www.nuget.org/packages/SourceMax.DocumentDB)
