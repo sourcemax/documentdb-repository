@@ -1,0 +1,17 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "SourceMax.DocumentDB Repository Library",
+  "authors": [ "Chris Wiederspan" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "dependencies": {
+    "Microsoft.Azure.DocumentDB": "1.5.2",
+    "Newtonsoft.Json": "8.0.1"
+  },
+
+  "frameworks": {
+    "net451": { }
+  }
+}
