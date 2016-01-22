@@ -17,28 +17,28 @@ namespace SourceMax.DocumentDB {
         IQueryable<T> AsQueryable<T>(Expression<Func<T, bool>> predicate);
 
 
-        IDocumentQuery<T> AsDocumentQuery<T>() where T : IIdentifiable;
+        IDocumentQuery<T> AsDocumentQuery<T>();
 
-        IDocumentQuery<T> AsDocumentQuery<T>(string sql) where T : IIdentifiable;
+        IDocumentQuery<T> AsDocumentQuery<T>(string sql);
 
-        IDocumentQuery<T> AsDocumentQuery<T>(Expression<Func<T, bool>> predicate) where T : IIdentifiable;
-
-
-        Task<List<T>> GetItemsAsync<T>() where T : IIdentifiable;
-
-        Task<List<T>> GetItemsAsync<T>(string sql) where T : IIdentifiable;
-
-        Task<List<T>> GetItemsAsync<T>(Expression<Func<T, bool>> predicate) where T : IIdentifiable;
+        IDocumentQuery<T> AsDocumentQuery<T>(Expression<Func<T, bool>> predicate);
 
 
-        Task<T> GetItemAsync<T>(string id) where T : IIdentifiable;
+        Task<List<T>> GetItemsAsync<T>();
 
-        Task<T> CreateItemAsync<T>(T item) where T : IIdentifiable;
+        Task<List<T>> GetItemsAsync<T>(string sql);
 
-        Task<bool> UpdateItemAsync<T>(T item) where T : IIdentifiable;
+        Task<List<T>> GetItemsAsync<T>(Expression<Func<T, bool>> predicate);
 
-        Task<T> UpsertItemAsync<T>(T item) where T : IIdentifiable;
 
-        Task<bool> DeleteItemAsync<T>(string id) where T : IIdentifiable;
+        Task<T> GetItemAsync<T>(string id);
+
+        Task<T> CreateItemAsync<T>(T item);
+
+        Task<bool> UpdateItemAsync<T>(string id, T item);
+
+        Task<T> UpsertItemAsync<T>(T item);
+
+        Task<bool> DeleteItemAsync<T>(string id);
     }
 }

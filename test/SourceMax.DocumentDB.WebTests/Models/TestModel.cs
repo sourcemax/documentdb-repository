@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace SourceMax.DocumentDB.WebTests.Models {
 
-    public class TestModel : IIdentifiable {
+    public class TestModel {
 
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }

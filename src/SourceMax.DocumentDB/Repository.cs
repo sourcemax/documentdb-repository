@@ -60,15 +60,15 @@ namespace SourceMax.DocumentDB {
 
         
 
-        public virtual IDocumentQuery<T> AsDocumentQuery<T>() where T : IIdentifiable {
+        public virtual IDocumentQuery<T> AsDocumentQuery<T>() {
             return this.Client.CreateDocumentQuery<T>(this.Collection.SelfLink).AsDocumentQuery();
         }
 
-        public virtual IDocumentQuery<T> AsDocumentQuery<T>(string sql) where T : IIdentifiable {
+        public virtual IDocumentQuery<T> AsDocumentQuery<T>(string sql) {
             return this.Client.CreateDocumentQuery<T>(this.Collection.SelfLink, sql).AsDocumentQuery();
         }
 
-        public virtual IDocumentQuery<T> AsDocumentQuery<T>(Expression<Func<T, bool>> predicate) where T : IIdentifiable {
+        public virtual IDocumentQuery<T> AsDocumentQuery<T>(Expression<Func<T, bool>> predicate) {
 
             var query = this.Client
                 .CreateDocumentQuery<T>(this.Collection.SelfLink)
@@ -80,7 +80,7 @@ namespace SourceMax.DocumentDB {
         
 
 
-        public virtual async Task<List<T>> GetItemsAsync<T>() where T : IIdentifiable {
+        public virtual async Task<List<T>> GetItemsAsync<T>() {
 
             var query = await this.Client
                 .CreateDocumentQuery<T>(this.Collection.SelfLink)
@@ -90,7 +90,7 @@ namespace SourceMax.DocumentDB {
             return query.ToList();
         }
 
-        public virtual async Task<List<T>> GetItemsAsync<T>(string sql) where T : IIdentifiable {
+        public virtual async Task<List<T>> GetItemsAsync<T>(string sql) {
 
             var query = await this.Client
                 .CreateDocumentQuery<T>(this.Collection.SelfLink, sql)
@@ -100,7 +100,7 @@ namespace SourceMax.DocumentDB {
             return query.ToList();
         }
 
-        public virtual async Task<List<T>> GetItemsAsync<T>(Expression<Func<T, bool>> predicate) where T : IIdentifiable {
+        public virtual async Task<List<T>> GetItemsAsync<T>(Expression<Func<T, bool>> predicate) {
 
             var query = await this.Client
                 .CreateDocumentQuery<T>(this.Collection.SelfLink)
@@ -113,7 +113,7 @@ namespace SourceMax.DocumentDB {
 
 
 
-        public virtual async Task<T> GetItemAsync<T>(string id) where T : IIdentifiable {
+        public virtual async Task<T> GetItemAsync<T>(string id) {
 
             var query = await this.Client
                 .CreateDocumentQuery(this.Collection.SelfLink)
@@ -124,26 +124,26 @@ namespace SourceMax.DocumentDB {
             return query.SingleOrDefault();
         }
 
-        public virtual async Task<T> CreateItemAsync<T>(T item) where T : IIdentifiable {
+        public virtual async Task<T> CreateItemAsync<T>(T item) {
 
             var result = await this.Client.CreateDocumentAsync(this.Collection.SelfLink, item);
             return item;
         }
 
-        public virtual async Task<bool> UpdateItemAsync<T>(T item) where T : IIdentifiable {
+        public virtual async Task<bool> UpdateItemAsync<T>(string id, T item) {
 
-            var doc = await this.GetDocumentAsync(item.Id);
+            var doc = await this.GetDocumentAsync(id);
             var result = await this.Client.ReplaceDocumentAsync(doc.SelfLink, item);
             return result.StatusCode == System.Net.HttpStatusCode.OK;
         }
 
-        public virtual async Task<T> UpsertItemAsync<T>(T item) where T : IIdentifiable {
+        public virtual async Task<T> UpsertItemAsync<T>(T item) {
 
             await this.Client.UpsertDocumentAsync(this.Collection.SelfLink, item);
             return item;
         }
 
-        public virtual async Task<bool> DeleteItemAsync<T>(string id) where T : IIdentifiable {
+        public virtual async Task<bool> DeleteItemAsync<T>(string id) {
 
             var doc = await this.GetDocumentAsync(id);
             var result = await this.Client.DeleteDocumentAsync(doc.SelfLink);

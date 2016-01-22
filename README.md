@@ -2,9 +2,9 @@
 Azure DocumentDB Repository
 ===
 
-A repository implementation built on the Azure DocumentDB SDK for .NET that is reusable in .NET, and specifically ASP.NET 5, applications.
+A .NET repository implementation built for Microsoft's Azure DocumentDB. Although usable in any .NET project, it was built specifically with ASP.NET 5 in mind.
 
-[Available as a Nuget Package](https://www.nuget.org/packages/SourceMax.DocumentDB)
+The source code is available here, but you can install directory into your project using the [NuGet package](https://www.nuget.org/packages/SourceMax.DocumentDB).
 
 Installation
 ---
@@ -38,7 +38,7 @@ public void ConfigureServices(IServiceCollection services) {
 Using the Repository
 ---
 
-You can simply inject the repository into any controller or service where you need to access the DocumentDB:
+To use the repository in a controller, for example, you just inject it and you are good to go:
 
 ```C#
 public class TestController : Controller {
@@ -53,15 +53,30 @@ public class TestController : Controller {
     public async Task<IActionResult> Get() {
             
         // Get a single item
-        var item = await this.Repository.GetItemAsync<TestModel>("SomeId");
+        var item = await this.Repository.GetItemAsync<MyModel>("SomeId");
 
         // Get all Items
-        var items = await this.Repository.AsQueryable<TestModel>().ToListAsync();
+        var items = await this.Repository
+            .AsQueryable<MyModel>()
+            .ToListAsync();
 
-        // More complex query with projection
-        var asyncItems = await this.Repository.AsQueryable<TestModel>().Where(x => x.Description == "Test load #1").Select(x => new { Id = x.Id, Type = x.Type }).ToListAsync();
+        // More complex query with projection with a where clause and projection
+        var asyncItems = await this.Repository
+            .AsQueryable<MyModel>()
+            .Where(x => x.Description == "Test load #1")
+            .Select(x => new { Id = x.Id, Type = x.Type })
+            .ToListAsync();
 
         return this.Ok();
     }
 }
 ```
+
+Acknowledgements
+---
+
+The code for the repository was derived, in large part, from Ryan CrawCour's 
+[article](https://azure.microsoft.com/en-us/documentation/articles/documentdb-dotnet-application/) and 
+[repository](https://github.com/Azure-Samples/documentdb-dotnet-todo-app) 
+on DocumentDB. Not sure what his actual title is, but Ryan is the public figurehead for Microsoft's
+DocumentDB offering, so he knows what he is talking about.
